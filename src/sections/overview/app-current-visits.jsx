@@ -28,74 +28,95 @@ const LEGEND_HEIGHT = 72; */
 // ----------------------------------------------------------------------
 
 export default function AppCurrentVisits({ title, subheader, chart, ...other }) {
-  const [series] = useState([75]);
+  const [series] = useState([2324]);
   const [options] = useState({
     chart: {
       height: 350,
       type: 'radialBar',
     },
+    series: [44, 75],
     plotOptions: {
       radialBar: {
-        startAngle: 0,
-        endAngle: 360,
-        hollow: {
-          margin: 0,
-          size: '70%',
-          background: '#fff',
-          image: undefined,
-          imageOffsetX: 0,
-          imageOffsetY: 0,
-          position: 'front',
-          dropShadow: {
-            enabled: true,
-            top: 3,
-            left: 0,
-            blur: 4,
-            opacity: 0.24,
-          },
-        },
-        track: {
-          background: '#fff',
-          strokeWidth: '67%',
-          margin: 0,
-          dropShadow: {
-            enabled: true,
-            top: -3,
-            left: 0,
-            blur: 4,
-            opacity: 0.35,
-          },
-        },
         dataLabels: {
-          show: true,
-          name: {
-            offsetY: -10,
+          total: {
             show: true,
-            color: '#888',
-            fontSize: '17px',
-          },
-          value: {
-            formatter(val) {
-              return val;
-            },
-            color: '#111',
-            fontSize: '36px',
-            show: true,
+            label: 'TOTAL',
           },
         },
       },
     },
-
     fill: {
-   type: "solid",
-   colors: ["#ffde88"]
-  },
+      type: 'solid',
+      colors: ['#ffde88'],
+    },
 
     stroke: {
       lineCap: 'round',
     },
-    labels: ['Out of 100'],
+    labels: ['Before', 'After'],
+    // plotOptions: {
+    //   radialBar: {
+    //     startAngle: 0,
+    //     endAngle: 360,
+    //     hollow: {
+    //       margin: 0,
+    //       size: '70%',
+    //       background: '#fff',
+    //       image: undefined,
+    //       imageOffsetX: 0,
+    //       imageOffsetY: 0,
+    //       position: 'front',
+    //       dropShadow: {
+    //         enabled: true,
+    //         top: 3,
+    //         left: 0,
+    //         blur: 4,
+    //         opacity: 0.24,
+    //       },
+    //     },
+    //     track: {
+    //       background: '#fff',
+    //       strokeWidth: '67%',
+    //       margin: 0,
+    //       dropShadow: {
+    //         enabled: true,
+    //         top: -3,
+    //         left: 0,
+    //         blur: 4,
+    //         opacity: 0.35,
+    //       },
+    //     },
+    //     dataLabels: {
+    //       show: true,
+    //       name: {
+    //         offsetY: -10,
+    //         show: true,
+    //         color: '#888',
+    //         fontSize: '17px',
+    //       },
+    //       value: {
+    //         formatter(val) {
+    //           return val;
+    //         },
+    //         color: '#111',
+    //         fontSize: '36px',
+    //         show: true,
+    //       },
+    //     },
+    //   },
+    // },
+
+    // fill: {
+    //   type: 'solid',
+    //   colors: ['#ffde88'],
+    // },
+
+    // stroke: {
+    //   lineCap: 'round',
+    // },
+    // labels: ['Out of 100'],
   });
+
   return (
     <Card {...other} sx={{ boxShadow: '0 1.6rem 3rem #0000001a', backgroundColor: '#fff3d4' }}>
       <Box sx={{ minHeight: 424 }}>
