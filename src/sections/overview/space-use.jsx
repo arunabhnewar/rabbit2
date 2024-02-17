@@ -11,26 +11,22 @@ export default function SpaceUsed({ totalSpace, usedSpace, ...other }) {
   const options = {
     chart: {
       type: 'radialBar',
-      offsetY: -10,
-      sparkline: {
-        enabled: true,
-      },
     },
 
     plotOptions: {
       radialBar: {
         startAngle: -90,
         endAngle: 90,
-
         hollow: {
           margin: 3,
-          size: '50%',
+          size: '45%',
         },
         track: {
           background: '#e7e7e7',
+          startAngle: -90,
+          endAngle: 90,
           strokeWidth: '67%',
           margin: 2,
-          borderRadius: '5px',
           dropShadow: {
             enabled: true,
             top: 2,
@@ -63,6 +59,7 @@ export default function SpaceUsed({ totalSpace, usedSpace, ...other }) {
       type: 'gradient',
       gradient: {
         shade: 'light',
+        type: 'horizontal',
         gradientToColors: ['#0092B7'],
         shadeIntensity: 0.4,
         inverseColors: false,
@@ -71,11 +68,10 @@ export default function SpaceUsed({ totalSpace, usedSpace, ...other }) {
         stops: [0, 100],
       },
     },
-
-    labels: ['Average Results'],
     stroke: {
       lineCap: 'round',
     },
+    labels: ['Average Results'],
   };
 
   // Function to calculate the percentage of used space

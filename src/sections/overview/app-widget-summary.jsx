@@ -1,7 +1,8 @@
+/* eslint-disable react/jsx-boolean-value */
 /* eslint-disable object-shorthand */
 import PropTypes from 'prop-types';
 
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Tooltip } from '@mui/material';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { BarPlot, ChartContainer } from '@mui/x-charts';
@@ -46,9 +47,10 @@ export default function AppWidgetSummary({ title, total, data, color, sx, ...oth
             <ChartContainer
               width={150}
               height={130}
-              series={[{ data: data?.series, label: `${data?.labels}`, type: 'bar', color: color }]}
-              xAxis={[{ scaleType: 'band', data: data?.labels }]}
+              series={[{ data: data.series, label: `${data.labels}`, type: 'bar', color: color }]}
+              xAxis={[{ scaleType: 'band', data: data.labels }]}
             >
+              <Tooltip shared={true} />
               <BarPlot />
             </ChartContainer>
           </Box>
@@ -63,5 +65,8 @@ AppWidgetSummary.propTypes = {
   sx: PropTypes.object,
   title: PropTypes.string,
   total: PropTypes.number,
-  data: PropTypes.object,
+  data: PropTypes.shape({
+    series: PropTypes.arrayOf(PropTypes.number), // Array of numbers for series data
+    labels: PropTypes.arrayOf(PropTypes.string), // Array of strings for labels
+  }),
 };
