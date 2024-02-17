@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
@@ -59,6 +59,24 @@ export default function AppSpeedScores({ title, subheader, ...other }) {
     },
     labels: ['After', 'Before'],
     colors: ['#00CC66', '#FFAA33'],
+
+    legend: {
+      show: true,
+      fontSize: '13px',
+      position: 'bottom',
+      horizontalAlign: 'center',
+      paddingTop: 3,
+      markers: {
+        radius: 12,
+      },
+      fontWeight: 600,
+      itemMargin: {
+        horizontal: 8,
+      },
+      labels: {
+        colors: '#000000',
+      },
+    },
   });
 
   return (
@@ -67,7 +85,7 @@ export default function AppSpeedScores({ title, subheader, ...other }) {
         <CardHeader title={title} subheader={subheader} sx={{ mb: 2, textAlign: 'center' }} />
         <ReactApexChart options={options} series={series} type="radialBar" />
 
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4 }}>
+        {/* <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4 }}>
           <Box sx={{ marginLeft: 2.5, marginRight: 2.5, textAlign: 'center' }}>
             <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
               Pages
@@ -80,7 +98,7 @@ export default function AppSpeedScores({ title, subheader, ...other }) {
             </Typography>
             <Typography variant="h5">80</Typography>
           </Box>
-        </Box>
+        </Box> */}
       </Box>
     </Card>
   );

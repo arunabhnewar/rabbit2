@@ -46,7 +46,7 @@ export default function AppWidgetSummary({ title, total, data, color, sx, ...oth
             <ChartContainer
               width={150}
               height={130}
-              series={[{ data: data?.series, label: 'uv', type: 'bar', color: color }]}
+              series={[{ data: data?.series, label: `${data?.labels}`, type: 'bar', color: color }]}
               xAxis={[{ scaleType: 'band', data: data?.labels }]}
             >
               <BarPlot />
