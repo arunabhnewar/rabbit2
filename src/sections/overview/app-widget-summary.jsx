@@ -1,56 +1,67 @@
+/* eslint-disable object-shorthand */
 import PropTypes from 'prop-types';
 
-import Box from '@mui/material/Box';
+import { Box, Stack } from '@mui/material';
 import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+import { BarPlot, ChartContainer } from '@mui/x-charts';
 
 // ----------------------------------------------------------------------
 
-export default function AppWidgetSummary({
-  title,
-  total,
-  icon,
-  url,
-  color = 'primary',
-  sx,
-  ...other
-}) {
+export default function AppWidgetSummary({ title, total, data, color, sx, ...other }) {
   return (
-    <Link to={url} style={{ textDecoration: 'none' }}>
-      <Card
+    <Card
+      sx={{
+        px: 2,
+        py: 1,
+        borderRadius: 2,
+        boxShadow: '0 1.6rem 3rem #0000001a',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        ...sx,
+      }}
+      {...other}
+    >
+      <Box>
+        <Typography variant="subtitle1" sx={{ color: 'text.secondary', pt: 2 }}>
+          {title}
+        </Typography>
+      </Box>
+
+      <Box
         component={Stack}
-        spacing={3}
+        spacing={1}
         direction="row"
         sx={{
-          px: 3,
-          py: 5,
-          borderRadius: 2,
-          boxShadow: '0 1.6rem 3rem #0000001a',
-          ...sx,
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}
-        {...other}
       >
-        {icon && <Box sx={{ width: 64, height: 64 }}>{icon}</Box>}
-
         <Stack spacing={0.5}>
-          <Typography variant="h4">{total}</Typography>
-
-          <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
-            {title}
-          </Typography>
+          <Typography variant="h4">{total.toLocaleString()}</Typography>
         </Stack>
-      </Card>
-    </Link>
+
+        {data && (
+          <Box sx={{ width: 150, height: 130 }}>
+            <ChartContainer
+              width={150}
+              height={130}
+              series={[{ data: data?.series, label: 'uv', type: 'bar', color: color }]}
+              xAxis={[{ scaleType: 'band', data: data?.labels }]}
+            >
+              <BarPlot />
+            </ChartContainer>
+          </Box>
+        )}
+      </Box>
+    </Card>
   );
 }
 
 AppWidgetSummary.propTypes = {
   color: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   sx: PropTypes.object,
   title: PropTypes.string,
   total: PropTypes.number,
-  url: PropTypes.string,
+  data: PropTypes.object,
 };

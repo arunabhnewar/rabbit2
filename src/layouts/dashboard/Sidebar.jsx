@@ -68,15 +68,14 @@ export default function Sidebar({ openNav, onCloseNav }) {
         },
         // bgcolor: (theme) => theme.palette.paper,
         backgroundColor: '#f8f9fa',
+        overflowY: 'auto',
       }}
     >
       <Box
         sx={{
-          // m: 1.5,
-          // border: '1px solid grey',
           height: '100%',
-          // borderRadius: '10px',
           bgcolor: (theme) => theme.palette.grey[900],
+          paddingBottom: 5,
         }}
       >
         <Logo sx={{ mt: 3, ml: 4 }} />
@@ -87,11 +86,9 @@ export default function Sidebar({ openNav, onCloseNav }) {
       <Box sx={{ flexGrow: 1, backgroundColor: '#f8f9fa' }}>
         <Box
           sx={{
-            // m: 1.5,
-            // border: '1px solid grey',
             height: '100%',
-            // borderRadius: '10px',
             bgcolor: (theme) => theme.palette.grey[900],
+            padding: '80px 0 10px 0',
           }}
         >
           {renderUser}
@@ -128,7 +125,7 @@ export default function Sidebar({ openNav, onCloseNav }) {
             },
           }}
         >
-          {renderContent}
+          <Box sx={{ height: 1 }}>{renderContent}</Box>
         </Drawer>
       )}
     </Box>

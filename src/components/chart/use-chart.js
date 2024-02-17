@@ -41,7 +41,6 @@ export default function useChart(options) {
       theme.palette.info.dark,
       theme.palette.info.darker,
     ],
-
     // Chart
     chart: {
       toolbar: { show: false },
@@ -86,7 +85,7 @@ export default function useChart(options) {
 
     // Stroke
     stroke: {
-      width: 3,
+      width: 1,
       curve: 'smooth',
       lineCap: 'round',
     },

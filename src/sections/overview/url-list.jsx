@@ -12,7 +12,6 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 
-
 // ----------------------------------------------------------------------
 
 function createData(urls, firstDetected, cacheRefreshed) {
@@ -22,9 +21,6 @@ function createData(urls, firstDetected, cacheRefreshed) {
     cacheRefreshed,
   };
 }
-
-
-
 
 const rows = [
   createData('google.com.bd', 'Feb 12,2024, 10:56 AM', 'Feb 12,2024, 10:57 AM'),
@@ -87,20 +83,16 @@ export function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-
 // ----------------------------------------------------------------------
 
 function EnhancedTableHead(props) {
-   
   const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
 
   return (
-
-
-     <TableHead >
+    <TableHead>
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell
@@ -120,7 +112,6 @@ function EnhancedTableHead(props) {
         ))}
       </TableRow>
     </TableHead>
-
   );
 }
 
@@ -205,9 +196,9 @@ export default function EnhancedTable() {
             sx={{ mb: 2 }}
           />
         </Box>
-        <TableContainer >
+        <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size="medium">
-            <EnhancedTableHead  order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />
+            <EnhancedTableHead order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />
             <TableBody>
               {visibleRows.map((row, index) => (
                 <TableRow
@@ -217,7 +208,7 @@ export default function EnhancedTable() {
                   key={row.urls}
                   sx={{ cursor: 'pointer'}}
                 >
-                  <TableCell  component="th" scope="row" padding="5px">
+                  <TableCell component="th" scope="row" sx={{ padding: '5px' }}>
                     {row.urls}
                   </TableCell>
                   <TableCell align="left">{row.firstDetected}</TableCell>

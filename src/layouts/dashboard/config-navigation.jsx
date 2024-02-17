@@ -9,47 +9,106 @@ const icon = (name) => (
 const navConfig = [
   {
     title: 'Website',
-    icon:icon('website'),
+    icon: icon('website'),
     submenu: [
       {
-        title: 'Overview',
-        path: '/',
-        icon: icon('home'),
+        title: 'mymandap',
+        icon: icon('weblink'),
+        path: '/mymandap.in',
       },
       {
-        title: 'Reports',
-        path: '/reports',
-        icon: icon('reports'),
+        title: 'google',
+        icon: icon('weblink'),
+        path: '/google.uk',
+      },
+    ],
+  },
+  {
+    title: 'Overview',
+    icon: icon('home'),
+    path: '/',
+  },
+  {
+    title: 'Reports',
+    icon: icon('reports'),
+    submenu: [
+      {
+        title: 'Pageviews Impression',
+        icon: icon('pageviews'),
+        path: '/page-views-impression',
       },
       {
-        title: 'Settings',
-        path: '/settings',
-        icon: icon('setting'),
+        title: 'Css Optimization',
+        icon: icon('cssOptimization'),
+        path: '/css-optimization',
+      },
+    ],
+  },
+  {
+    title: 'Settings',
+    icon: icon('setting'),
+    submenu: [
+      {
+        title: 'Cloudflare Integration',
+        icon: icon('cloudflare'),
+        path: '/cloudflare-integration',
       },
       {
-        title: 'Team (Delegate)',
-        path: '/delegate-team',
-        icon: icon('team'),
+        title: 'Page Rules',
+        icon: icon('pageRules'),
+        path: '/page-rules',
+      },
+    ],
+  },
+  {
+    title: 'Team',
+    icon: icon('team'),
+    path: '/delegate-team',
+  },
+  {
+    title: 'Billing',
+    icon: icon('invoice'),
+    path: '/billing',
+  },
+  {
+    title: 'Action',
+    icon: icon('action'),
+    submenu: [
+      {
+        title: 'Delete Website',
+        icon: icon('delete'),
+        path: '/delete-website',
+      },
+    ],
+  },
+  {
+    title: 'Tutorial',
+    icon: icon('tutorial'),
+    path: '/tutorial',
+  },
+  {
+    title: 'Help',
+    icon: icon('help'),
+    submenu: [
+      {
+        title: 'Log Messages',
+        icon: icon('logmessages'),
+        path: '/log-messages',
       },
       {
-        title: 'Billing',
-        path: '/billing',
-        icon: icon('invoice'),
+        title: 'Dashboard Tour',
+        icon: icon('dashboardTour'),
+        path: '/dashboard-tour',
       },
       {
-        title: 'Action',
-        path: '/action',
-        icon: icon('action'),
+        title: 'Knowledge Base',
+        icon: icon('knowledgebase'),
+        path: '/knowledge-base',
       },
       {
-        title: 'Tutorial (Videos)',
-        path: '/tutorial',
-        icon: icon('tutorial'),
-      },
-      {
-        title: 'Help',
-        path: '/help',
-        icon: icon('help'),
+        title: 'Contact Us',
+        icon: icon('contactus'),
+        path: '/contact-us',
       },
     ],
   },

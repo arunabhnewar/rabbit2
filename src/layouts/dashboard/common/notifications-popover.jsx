@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { set } from 'date-fns';
+import { set, sub } from 'date-fns';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
@@ -28,11 +28,38 @@ import Scrollbar from 'src/components/scrollbar';
 const NOTIFICATIONS = [
   {
     id: faker.string.uuid(),
+    title: 'Gianna Brandt',
+    description: 'request a payment of $200',
+    avatar: null,
+    type: 'order_shipped',
+    createdAt: set(new Date(), { hours: 6, minutes: 45 }),
+    isUnRead: true,
+  },
+  {
+    id: faker.string.uuid(),
+    title: faker.person.fullName(),
+    description: 'answered to your comment on the Minimal',
+    avatar: '/assets/images/avatars/avatar_2.jpg',
+    type: 'friend_interactive',
+    createdAt: sub(new Date(), { hours: 3, minutes: 30 }),
+    isUnRead: true,
+  },
+  {
+    id: faker.string.uuid(),
     title: 'Your order is placed',
     description: 'waiting for shipping',
     avatar: null,
     type: 'order_placed',
     createdAt: set(new Date(), { hours: 10, minutes: 30 }),
+    isUnRead: true,
+  },
+  {
+    id: faker.string.uuid(),
+    title: 'Your have new message',
+    description: '3 unread message',
+    avatar: null,
+    type: 'chat_message',
+    createdAt: set(new Date(), { hours: 28, minutes: 4 }),
     isUnRead: true,
   },
 ];
@@ -80,6 +107,7 @@ export default function NotificationsPopover() {
             mt: 1.5,
             ml: 0.75,
             width: 360,
+            top: '50px !important',
           },
         }}
       >
@@ -102,7 +130,7 @@ export default function NotificationsPopover() {
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <Scrollbar sx={{ height: { xs: 340, sm: 'auto' } }}>
+        <Scrollbar sx={{ height: { lg: 340, md: 300, xs: 300, sm: 'auto' } }}>
           <List
             disablePadding
             subheader={

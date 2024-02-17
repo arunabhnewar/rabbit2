@@ -1,62 +1,68 @@
 /* eslint-disable react/no-unknown-property */
+import styled from '@emotion/styled';
+import { Box, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 
-import { SvgIcon, Typography } from '@mui/material';
 import { useState } from 'react';
 // import OverviewHeader from 'src/components/OverviewHeader/OverviewHeader';
-import AppCurrentVisits from '../app-current-visits';
+import AppSpeedScores from '../app-speed-score';
 import AppWebsiteVisits from '../app-website-visits';
 import AppWidgetSummary from '../app-widget-summary';
+import BuyNow from '../buy-now';
+import FeatureBox from '../feature-box';
+import InviteFriends from '../invite-friends';
+import AppLoadingTime from '../loading-time-before-after';
+import SpaceUsed from '../space-use';
+import UpgradePlan from '../upgrade-plan';
 import EnhancedTable from '../url-list';
+import WeeklySales from '../weekly-sales';
+import WelcomeBack from '../welcome-back';
 
 // ----------------------------------------------------------------------
 
 export default function AppView() {
-  const [hovered, setHovered] = useState(false);
-  const [hovered2, setHovered2] = useState(false);
-  const [hovered3, setHovered3] = useState(false);
-  const handleMouseEnter = () => {
-    setHovered(true);
+  // Initial value for used space
+  const [usedSpace, setUsedSpace] = useState(30.5);
+
+  // Function to handle change in used space input
+  const handleUsedSpaceChange = (event) => {
+    const newValue = parseFloat(event.target.value);
+    setUsedSpace(newValue);
   };
 
-  const handleMouseLeave = () => {
-    setHovered(false);
-  };
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
-  const handleMouseEnter2 = () => {
-    setHovered2(true);
-  };
-
-  const handleMouseLeave2 = () => {
-    setHovered2(false);
-  };
-
-  const handleMouseEnter3 = () => {
-    setHovered3(true);
-  };
-
-  const handleMouseLeave3 = () => {
-    setHovered3(false);
-  };
   return (
     <Container maxWidth="xl">
       <Typography variant="h4" sx={{ mb: 5 }}>
-        Hi, <span style={{ fontSize: '20px', fontWeight: 500 }}>User Name</span> 👋
+        Hi <span style={{ fontSize: '20px', fontWeight: 500 }}>User Name </span> 👋
       </Typography>
-
-      {/* <OverviewHeader /> */}
-
+      {/* welcome */}
       <Grid container spacing={2}>
-        {/* Speed Score */}
-        <Grid xs={12} md={6} lg={4}>
-          <AppCurrentVisits
-            title="Speed Score"
-            subheader="Best score based on page speed insight"
-          />
+        {/* welcome */}
+        <Grid xs={12} md={8} lg={8}>
+          <WelcomeBack userName="Jaydon Frankie" />
         </Grid>
 
-        {/* Graph */}
+        {/* feature app */}
+        <Grid xs={12} md={4} lg={4}>
+          <FeatureBox title="Exploring the Hidden Gems of Destination" />
+        </Grid>
+
+        {/* Speed Score */}
+        <Grid xs={12} md={6} lg={4}>
+          <AppSpeedScores title="Speed Score" subheader="Best score based on page speed insight" />
+        </Grid>
+
+        {/* Website visits */}
         <Grid xs={12} md={6} lg={8}>
           <AppWebsiteVisits
             title="Website Visits"
@@ -99,127 +105,140 @@ export default function AppView() {
           />
         </Grid>
 
-        {/* Css Optimization */}
+        {/* Pages Optimized */}
         <Grid xs={12} sm={6} md={4}>
           <AppWidgetSummary
-            style={{ transition: '0.3s', background: hovered ? '#dad7f4' : '#f0effb' }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            title="CSS OPTIMIZATION"
-            total="90%"
-            color="success"
-            url="/css-optimization"
-            icon={
-              <SvgIcon
-                xmlns="http://www.w3.org/2000/svg"
-                width="4em"
-                height="4em"
-                viewBox="0 0 24 24"
-                style={{
-                  color: hovered ? '#fff' : '#4D69FA',
-                  transition: '0.3s',
-                  background: hovered ? '#4D69FA' : '#dfdcff',
-                  width: '50px',
-                  height: '50px',
-                  padding: '10px',
-                  borderRadius: '50%',
-                }}
-              >
-                <g
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                >
-                  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
-                  <path d="M14 2v4a2 2 0 0 0 2 2h4m-10 4a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1a1 1 0 0 1 1 1v1a1 1 0 0 0 1 1m4 0a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1a1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1" />
-                </g>
-              </SvgIcon>
-            }
+            title="Pages Optimized"
+            total={18765}
+            color="#14B479"
+            data={{
+              series: [5000, 3000, 2000, 2780, 1890, 2390, 3490, 700, 1200, 3800],
+              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+            }}
           />
         </Grid>
 
-        {/* Delegate Access */}
+        {/* 30 Days Page Views */}
         <Grid xs={12} sm={6} md={4}>
           <AppWidgetSummary
-            style={{ transition: '0.3s', background: hovered2 ? '#dad7f4' : '#f0effb' }}
-            onMouseEnter={handleMouseEnter2}
-            onMouseLeave={handleMouseLeave2}
-            title="DELEGATE ACCESS"
-            total="8"
-            color="info"
-            url="/delegate-access"
-            icon={
-              <SvgIcon
-                xmlns="http://www.w3.org/2000/svg"
-                width="4em"
-                height="4em"
-                viewBox="0 0 24 24"
-                style={{
-                  color: hovered2 ? '#fff' : '#4D69FA',
-                  transition: '0.3s',
-                  background: hovered2 ? '#4D69FA' : '#dfdcff',
-                  width: '50px',
-                  height: '50px',
-                  padding: '10px',
-                  borderRadius: '50%',
-                }}
-              >
-                <g
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  transform="matrix(0.7000000000000005,0,0,0.7000000000000005,3.5999999999999908,3.5999999999999908)"
-                >
-                  <path d="M21 14c0-1.103-.897-2-2-2h-2c-1.103 0-2 .897-2 2-1.654 0-3 1.346-3 3v4c0 1.654 1.346 3 3 3h6c1.654 0 3-1.346 3-3v-4c0-1.654-1.346-3-3-3Zm-4-1h2c.551 0 1 .449 1 1h-4c0-.551.449-1 1-1Zm6 8c0 1.103-.897 2-2 2h-6c-1.103 0-2-.897-2-2v-2h4.5v1.5a.5.5 0 0 0 1 0V19H23v2Zm0-3H13v-1c0-1.103.897-2 2-2h6c1.103 0 2 .897 2 2v1ZM9 12c3.309 0 6-2.691 6-6s-2.691-6-6-6-6 2.691-6 6 2.691 6 6 6ZM9 1c2.757 0 5 2.243 5 5s-2.243 5-5 5-5-2.243-5-5 2.243-5 5-5Zm1.995 13.66a.495.495 0 0 1-.566.424A8.274 8.274 0 0 0 9.25 15C4.701 15 1 18.701 1 23.25v.25a.5.5 0 0 1-1 0v-.25C0 18.149 4.149 14 9.25 14c.442 0 .887.032 1.321.094.273.04.463.293.424.566Z" />
-                </g>
-              </SvgIcon>
-            }
+            title="30 Days Page Views"
+            total={4876}
+            color="#00B8D9"
+            data={{
+              series: [1000, 600, 1900, 3100, 2400, 1400, 3900, 800, 3200, 2600],
+              labels: [
+                'Day 1',
+                'Day 2',
+                'Day 3',
+                'Day 4',
+                'Day 5',
+                'Day 6',
+                'Day 7',
+                'Day 8',
+                'Day 9',
+                'Day 10',
+              ],
+            }}
           />
         </Grid>
 
-        {/* Page Roles */}
+        {/* Team Member */}
         <Grid xs={12} sm={6} md={4}>
           <AppWidgetSummary
-            style={{ transition: '0.3s', background: hovered3 ? '#dad7f4' : '#f0effb' }}
-            onMouseEnter={handleMouseEnter3}
-            onMouseLeave={handleMouseLeave3}
-            title="PAGE ROLES(S)"
-            total="0"
-            color="warning"
-            url="/page-rules"
-            icon={
-              <SvgIcon
-                xmlns="http://www.w3.org/2000/svg"
-                width="4em"
-                height="4em"
-                viewBox="0 0 24 24"
-                style={{
-                  color: hovered3 ? '#fff' : '#4D69FA',
-                  transition: '0.3s',
-                  background: hovered3 ? '#4D69FA' : '#dfdcff',
-                  width: '50px',
-                  height: '50px',
-                  padding: '10px',
-                  borderRadius: '50%',
-                }}
-              >
-                <g
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  transform="matrix(0.7600000000000003,0,0,0.7600000000000003,2.8799999999999955,2.8799999999999955)"
-                >
-                  <path d="M19.5 1h-15C2.02 1 0 3.02 0 5.5v13C0 20.98 2.02 23 4.5 23h15c2.48 0 4.5-2.02 4.5-4.5v-13C24 3.02 21.98 1 19.5 1Zm-15 1h15C21.43 2 23 3.57 23 5.5V8H1V5.5C1 3.57 2.57 2 4.5 2Zm15 20h-15C2.57 22 1 20.43 1 18.5V9h22v9.5c0 1.93-1.57 3.5-3.5 3.5ZM19 5c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1Zm-3 0c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1Zm-3 0c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1Z" />
-                </g>
-              </SvgIcon>
-            }
+            title="Team Member"
+            total={768}
+            color="#FFBA23"
+            data={{
+              series: [80, 70, 110, 50, 140, 60, 95, 105, 125, 40],
+              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+            }}
           />
+        </Grid>
+
+        {/* Progress bar */}
+        <Grid xs={12} md={6} lg={8} sx={{ mt: 3 }}>
+          <Grid xs={12} md={12} lg={12}>
+            {/* Loading Time */}
+            <Box
+              sx={{
+                width: '100%',
+                boxShadow: '0 1.6rem 3rem #0000001a',
+                p: 3,
+                pb: 4,
+                background: '#fff',
+                borderRadius: '16px',
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 600, pb: 3, color: '#637381' }}>
+                Loading Time
+              </Typography>
+              <AppLoadingTime color="green" title="Before" total={22222} percent={50} />
+              <br />
+              <AppLoadingTime color="blue" title="After" total={11111} percent={25} />
+            </Box>
+
+            <Box sx={{ flexGrow: 1 }}>
+              <Grid container spacing={2}>
+                {/* Css Size */}
+                <Grid sx={{ mt: 3 }} item xs={7}>
+                  <Item sx={{ boxShadow: '0 1.6rem 3rem #0000001a' }}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <Item>
+                          <Typography
+                            variant="h6"
+                            sx={{ fontWeight: 600, pb: 3, textAlign: 'left' }}
+                          >
+                            CSS Size
+                          </Typography>
+                          <Box sx={{ width: '100%' }}>
+                            <AppLoadingTime
+                              color="green"
+                              title="Before"
+                              total={22222}
+                              percent={40}
+                            />
+                            <br />
+                            <AppLoadingTime color="blue" title="After" total={51111} percent={75} />
+                          </Box>
+                        </Item>
+                      </Grid>
+                    </Grid>
+                  </Item>
+                </Grid>
+
+                {/* Space Use */}
+                <Grid sx={{ mt: 3 }} item xs={5}>
+                  <SpaceUsed totalSpace={50} usedSpace={usedSpace} />
+                  <input type="number" value={usedSpace} onChange={handleUsedSpaceChange} hidden />
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
+
+        {/* Buy Now  */}
+        <Box sx={{ flexGrow: 1, mt: 4, ml: 1 }}>
+          <Grid container spacing={2}>
+            <Grid xs={12}>
+              <BuyNow title="Lorem ipsum dolor sit amet consectetur adipisicing elit" />
+            </Grid>
+          </Grid>
+        </Box>
+
+        {/* Weekly sales */}
+        <Grid xs={12} sm={6} md={4} sx={{ mt: 2 }}>
+          <WeeklySales total={77} label="Weekly Sales" />
+        </Grid>
+
+        {/* Invite friends */}
+        <Grid xs={12} sm={6} md={4} sx={{ mt: 2 }}>
+          <InviteFriends amount={50} title="Invite friends and earn" />
+        </Grid>
+
+        {/* Upgrade plan */}
+        <Grid xs={12} sm={6} md={4} sx={{ mt: 2 }}>
+          <UpgradePlan title="Upgrade your plan and get more space" />
         </Grid>
 
         {/* Canonical URLs Detected Table */}

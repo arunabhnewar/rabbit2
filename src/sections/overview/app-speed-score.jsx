@@ -10,49 +10,63 @@ import ReactApexChart from 'react-apexcharts';
 
 // ----------------------------------------------------------------------
 
-export default function AppCurrentVisits({ title, subheader, chart, ...other }) {
-  const [series] = useState([2324]);
+export default function AppSpeedScores({ title, subheader, ...other }) {
+  const [series] = useState([75, 44]);
   const [options] = useState({
     chart: {
       height: 350,
       type: 'radialBar',
     },
-    series: [44, 75],
     plotOptions: {
       radialBar: {
+        hollow: {
+          margin: 15,
+          size: '65%',
+        },
         dataLabels: {
           name: {
             show: true,
           },
+
           value: {
             show: true,
-            fontSize: '14px',
+            fontSize: '18px',
+            fontWeight: 600,
             formatter(val) {
-              return `${val}`;
+              return `${val}%`;
             },
           },
           total: {
             show: true,
             label: 'Total',
+            color: '#637381',
+            fontSize: '12px',
+            fontWeight: 600,
+            formatter(w) {
+              return `2234`;
+            },
           },
         },
       },
     },
     fill: {
       type: 'solid',
-      colors: ['#ffde88'],
+      colors: ['#00CC66', '#FFAA33'],
     },
 
     stroke: {
       lineCap: 'round',
     },
-    labels: ['Before', 'After'],
+    labels: ['After', 'Before'],
+    colors: ['#00CC66', '#FFAA33'],
   });
+
   return (
     <Card {...other} sx={{ boxShadow: '0 1.6rem 3rem #0000001a' }}>
       <Box sx={{ minHeight: 424 }}>
         <CardHeader title={title} subheader={subheader} sx={{ mb: 2, textAlign: 'center' }} />
         <ReactApexChart options={options} series={series} type="radialBar" />
+
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4 }}>
           <Box sx={{ marginLeft: 2.5, marginRight: 2.5, textAlign: 'center' }}>
             <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
@@ -72,8 +86,7 @@ export default function AppCurrentVisits({ title, subheader, chart, ...other }) 
   );
 }
 
-AppCurrentVisits.propTypes = {
-  chart: PropTypes.object,
+AppSpeedScores.propTypes = {
   subheader: PropTypes.string,
   title: PropTypes.string,
 };
